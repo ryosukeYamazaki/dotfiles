@@ -1,0 +1,7 @@
+# Mac Specific Settings:
+#-------------------------------------------------------------------
+# echo 'hello'> /dev/null 2>&1 に意味はありません。tmuxのwindows nameが長すぎるので、付けているだけです。
+# こうすると window nameがechoになってすっきりです。
+set-option -g default-command "echo 'hello'> /dev/null 2>&1;reattach-to-user-namespace -l bash"
+bind -t emacs-copy M-w copy-pipe "reattach-to-user-namespace pbcopy"
+bind -t emacs-copy C-w copy-pipe "reattach-to-user-namespace pbcopy"
