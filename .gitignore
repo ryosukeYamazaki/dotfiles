@@ -1,9 +1,10 @@
 .idea
 .projectile
+.envrc
 TAGS*
 GPATH
 GRTAGS
 GTAGS
 *~
 .#*
-^#*
+\#*
