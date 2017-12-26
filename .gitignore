@@ -2,6 +2,7 @@
 .projectile
 .envrc
 TAGS*
+tags*
 GPATH
 GRTAGS
 GTAGS

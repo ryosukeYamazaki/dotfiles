@@ -1,5 +1,5 @@
 [credential]
-  helper = osxkeychain
+  helper = store
 [user]
   name = Ryosuke Yamazaki
   email = ryamazaki@c-fo.com

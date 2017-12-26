@@ -7,38 +7,39 @@ export PATH=$HOME/.ndenv/bin:/usr/local/redis-2.6/bin:$PATH
 export PATH=~/bin:$PATH
 export CXXFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib"
 
-eval "$(rbenv init -)"
-eval "$(ndenv init -)"
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(direnv hook bash)"
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export GOPATH=$HOME/go
+export PATH="$HOME/.cask/bin:$PATH"
+
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 export GOROOT=`go env GOROOT`
-export PATH="$GOPATH/bin:$PATH"
+export GOPATH=$HOME/freee-work/go
+export PATH=$PATH:$GOPATH/bin
+
+eval "$(direnv hook bash)"
 
 export PS1='\W \u \d \t $ '
 export PS2=${PS1}
-
-
-
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_101`
 
 export PATH
 
 # fro redis session
 export USE_REDIS_SESSION_STORE=1
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/yamazaki-ryosuke/Library/google-cloud-sdk/path.bash.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/Users/yamazaki-ryosuke/Library/google-cloud-sdk/completion.bash.inc'
+# for plantuml
+export GRAPHVIZ_DOT=/usr/bin/dot
 
 # 会社用の環境変数とか
 if [ -f ~/.bash_profile_for_work ] ; then
 . ~/.bash_profile_for_work
 fi
+export PATH=$HOME/.anyenv/bin:$PATH && eval "$(anyenv init -)"
+export PATH=~/bin:$PATH
+
+lssh () {
+  IP=$(lsec2 $@ | peco | awk -F "\t" '{print $2}')
+  if [ $? -eq 0 -a "${IP}" != "" ]
+  then
+      ssh ${IP}
+  fi
+}
+
