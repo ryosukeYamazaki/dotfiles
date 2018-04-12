@@ -15,9 +15,17 @@ export GOROOT=`go env GOROOT`
 export GOPATH=$HOME/freee-work/go
 export PATH=$PATH:$GOPATH/bin
 
+PY2_VERSION="2.7.14"
+PY3_VERSION="3.6.3"
+
+pyenv global $PY3_VERSION $PY2_VERSION
+
 eval "$(direnv hook bash)"
 
-export PS1='\W \u \d \t $ '
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 export PS2=${PS1}
 
 export PATH
