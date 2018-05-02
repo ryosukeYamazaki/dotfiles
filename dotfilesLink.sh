@@ -1,5 +1,6 @@
 #!/bin/sh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.tmux ~/.tmux
 ln -sf ~/dotfiles/.gitignore ~/.gitignore
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 # ln -sf ~/dotfiles/.bashrc ~/.bashrc

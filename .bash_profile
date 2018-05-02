@@ -50,4 +50,3 @@ lssh () {
       ssh ${IP}
   fi
 }
-
