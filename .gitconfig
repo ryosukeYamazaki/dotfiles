@@ -1,18 +1,18 @@
 [credential]
-  helper = store
+	helper = store
 [user]
-  name = Ryosuke Yamazaki
-  email = ryamazaki@c-fo.com
+	name = ryosukeYamazaki
+	email = ryamazaki@c-fo.com
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 [url "ssh://git@github.com"]
-  insteadOf = git://git@github.com
+     insteadOf = git://git@github.com
 [url "ssh://git@github.com"]
-  insteadOf = https://git@github.com
+  insteadOf = https://github.com
 [core]
-  editor = emacs -nw
-  excludesfile = ~/.gitignore
+	editor = emacs -nw
+	excludesfile = ~/.gitignore
 [ghq]
-  root = /Users/yamazaki-ryosuke/go/src
+	root = /Users/yamazaki-ryosuke/go/src

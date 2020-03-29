@@ -1,5 +1,7 @@
 .idea
 .projectile
+.solargraph.yml
+.pryrc
 .envrc
 TAGS*
 tags*
