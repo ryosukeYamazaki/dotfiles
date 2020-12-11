@@ -52,3 +52,7 @@ lssh () {
       ssh ${IP}
   fi
 }
+
+alias em='emacs'
+alias g='git'
+

@@ -3,6 +3,8 @@
 .solargraph.yml
 .pryrc
 .envrc
+.dir-local.el
+.log
 TAGS*
 tags*
 GPATH

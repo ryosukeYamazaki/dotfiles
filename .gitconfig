@@ -16,3 +16,14 @@
 	excludesfile = ~/.gitignore
 [ghq]
 	root = /Users/yamazaki-ryosuke/go/src
+[alias]
+	cm = commit
+	st = status
+	co = checkout
+	cd = checkout develop
+	df = diff
+	br = branch --sort=committerdate
+	ad = add -p
+	poc = push origin HEAD
+	pud = pull upstream develop
+	pum = pull upstream master
