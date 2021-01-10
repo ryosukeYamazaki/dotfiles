@@ -45,6 +45,13 @@ fi
 export PATH=$HOME/.anyenv/bin:$PATH && eval "$(anyenv init -)"
 export PATH=~/bin:$PATH
 
+# for wsl docker
+# https://qiita.com/YukiMiyatake/items/73c7d6c4f2c9739ebe60
+export DOCKER_HOST='tcp://0.0.0.0:2375'
+export AWS_DEFAULT_REGION=ap-northeast-1
+
+
+
 lssh () {
   IP=$(lsec2 $@ | peco | awk -F "\t" '{print $2}')
   if [ $? -eq 0 -a "${IP}" != "" ]
