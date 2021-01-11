@@ -18,6 +18,7 @@
 	root = /Users/yamazaki-ryosuke/go/src
 [alias]
 	cm = commit
+	cms = commit -m
 	st = status
 	co = checkout
 	cd = checkout develop
