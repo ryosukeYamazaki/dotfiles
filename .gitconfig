@@ -7,15 +7,32 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+
 [url "ssh://git@github.com"]
-     insteadOf = git://git@github.com
-[url "ssh://git@github.com"]
+  insteadOf = git://git@github.com
+  insteadOf = git://github.com/
   insteadOf = https://github.com
+
 [core]
-	editor = emacs -nw
-	excludesfile = ~/.gitignore
-[ghq]
-	root = /Users/yamazaki-ryosuke/go/src
+  editor = emacs -nw
+  excludesfile = ~/.gitignore
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = decorations
+  navigate = true
+  side-by-side = true
+  line-numbers = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 [alias]
 	cm = commit
 	cms = commit -m
@@ -26,5 +43,18 @@
 	br = branch --sort=committerdate
 	ad = add -p
 	poc = push origin HEAD
+	pocf = push --force origin HEAD
 	pud = pull upstream develop
 	pum = pull upstream master
+	fu = fetch upstream
+	ls = log --oneline -n 20 upstream/develop..
+	fix = "!f () { git commit -m \"fixup! $1\"; };f"
+	ra = rebase -i --autosquash
+	sw = switch
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY

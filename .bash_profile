@@ -10,10 +10,8 @@ export CXXFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib"
 export PATH="$HOME/.cask/bin:$PATH"
 
 export PATH="$HOME/.anyenv/bin:$PATH"
+
 eval "$(anyenv init -)"
-export GOROOT=`go env GOROOT`
-export GOPATH=$HOME/freee-work/go
-export PATH=$PATH:$GOPATH/bin
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 PY2_VERSION="2.7.15"
@@ -60,6 +58,11 @@ lssh () {
   fi
 }
 
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
 alias em='emacs'
 alias g='git'
-
+alias relogin='exec $SHELL -l'
+eval "$(gh completion -s bash)"
+. "$HOME/.cargo/env"
