@@ -7,21 +7,6 @@ export PATH=$HOME/.ndenv/bin:/usr/local/redis-2.6/bin:$PATH
 export PATH=~/bin:$PATH
 export CXXFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib"
 
-export PATH="$HOME/.cask/bin:$PATH"
-
-export PATH="$HOME/.anyenv/bin:$PATH"
-
-eval "$(anyenv init -)"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-PY2_VERSION="2.7.15"
-PY3_VERSION="3.6.8"
-
-pyenv global $PY3_VERSION $PY2_VERSION
-
-export PATH="$HOME/.pyenv/versions/$PY3_VERSION/bin/:$PATH"
-export PATH="$HOME/.pyenv/versions/$PY2_VERSION/bin/:$PATH"
-
 export EDITOR=emacs
 eval "$(direnv hook bash)"
 
@@ -31,8 +16,6 @@ parse_git_branch() {
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \n$ "
 export PS2=${PS1}
 
-export PATH
-
 # fro redis session
 export USE_REDIS_SESSION_STORE=1
 
@@ -40,8 +23,6 @@ export USE_REDIS_SESSION_STORE=1
 if [ -f ~/.bash_profile_for_work ] ; then
 . ~/.bash_profile_for_work
 fi
-export PATH=$HOME/.anyenv/bin:$PATH && eval "$(anyenv init -)"
-export PATH=~/bin:$PATH
 
 # for wsl docker
 # https://qiita.com/YukiMiyatake/items/73c7d6c4f2c9739ebe60
