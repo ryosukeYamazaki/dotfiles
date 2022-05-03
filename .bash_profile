@@ -3,8 +3,7 @@ if [ -f ~/.bashrc ] ; then
 fi
 
 export TERM=xterm-256color
-export PATH=$HOME/.ndenv/bin:/usr/local/redis-2.6/bin:$PATH
-export PATH=~/bin:$PATH
+export GOPATH=~/go
 export CXXFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib"
 
 export EDITOR=emacs
@@ -28,7 +27,6 @@ fi
 # https://qiita.com/YukiMiyatake/items/73c7d6c4f2c9739ebe60
 export DOCKER_HOST='tcp://0.0.0.0:2375'
 export AWS_DEFAULT_REGION=ap-northeast-1
-
 
 
 lssh () {
