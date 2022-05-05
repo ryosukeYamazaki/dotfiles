@@ -45,3 +45,4 @@ alias g='git'
 alias relogin='exec $SHELL -l'
 eval "$(gh completion -s bash)"
 . "$HOME/.cargo/env"
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
