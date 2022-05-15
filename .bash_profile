@@ -4,6 +4,7 @@ fi
 
 export TERM=xterm-256color
 export GOPATH=~/go
+export PATH=$PATH:$GOPATH/bin
 export CXXFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib"
 
 export EDITOR=emacs
@@ -23,9 +24,6 @@ if [ -f ~/.bash_profile_for_work ] ; then
 . ~/.bash_profile_for_work
 fi
 
-# for wsl docker
-# https://qiita.com/YukiMiyatake/items/73c7d6c4f2c9739ebe60
-export DOCKER_HOST='tcp://0.0.0.0:2375'
 export AWS_DEFAULT_REGION=ap-northeast-1
 
 
