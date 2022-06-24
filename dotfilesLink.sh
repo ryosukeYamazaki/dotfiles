@@ -3,13 +3,34 @@
 sudo apt update
 sudo apt install direnv
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.
+
+# install textlint
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+exec $SHELL -l
+asdf nodejs update-nodebuild
+asdf install nodejs latest
+asdf global nodejs latest
+npm install -g textlint
+npm install -g textlint-plugin-org
+npm install -g textlint-rule-preset-ja-technical-writing
+npm install -g textlint-rule-preset-ja-spacing
+npm install -g textlint-rule-write-good
+
+# install git delta
 curl https://sh.rustup.rs -sSf | sh
 sudo apt install gcc
 cargo install git-delta
 
+
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.gitignore ~/.gitignore
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+sudo ln -sf ~/dotfiles/textlint.sh /usr/local/bin/textlint.sh
+if [ ! -e ~/.config/textlint ]; then
+    mkdir -p ~/.config/textlint
+fi
+ln -sf ~/dotfiles/textlint/textlintrc_ja.json ~/.config/textlint/textlintrc_ja.json
+ln -sf ~/dotfiles/textlint/textlintrc_en.json ~/.config/textlint/textlintrc_en.json
 
 if [ ! -e ~/.config/gh ]; then
     mkdir -p ~/.config/gh

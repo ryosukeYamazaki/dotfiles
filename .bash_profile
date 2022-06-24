@@ -5,6 +5,8 @@ fi
 export TERM=xterm-256color
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
+# https://go.dev/doc/install のとおりに実行している
+export PATH=$PATH:/usr/local/go/bin
 export CXXFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib"
 
 export EDITOR=emacs
@@ -38,7 +40,7 @@ lssh () {
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-alias em='emacs'
+alias em='emacs -nw'
 alias g='git'
 alias relogin='exec $SHELL -l'
 eval "$(gh completion -s bash)"
