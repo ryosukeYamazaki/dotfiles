@@ -1,8 +1,8 @@
 #!/bin/sh
 # 依存関係のインストール
 sudo apt update
-sudo apt install tmux
-sudo apt install direnv
+sudo apt install -y tmux
+sudo apt install -y direnv
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 . $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
 
@@ -20,7 +20,7 @@ npm install -g textlint-rule-write-good
 
 # install git delta
 curl https://sh.rustup.rs -sSf | sh
-sudo apt install gcc
+sudo apt install -y gcc
 cargo install git-delta
 
 
