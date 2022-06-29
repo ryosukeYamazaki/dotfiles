@@ -1,9 +1,15 @@
 #!/bin/bash
+# ghのPPAを登録する
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+
 # 依存関係のインストール
 sudo apt update
 sudo apt install -y tmux
 sudo apt install -y direnv
 sudo apt install -y emacs
+sudo apt install -y gh
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 . $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
 
