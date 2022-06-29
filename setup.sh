@@ -3,13 +3,12 @@
 sudo apt update
 sudo apt install -y tmux
 sudo apt install -y direnv
+sudo apt install -y emacs
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 . $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
-exec $SHELL -l
 
 # install textlint
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-exec $SHELL -l
 asdf nodejs update-nodebuild
 asdf install nodejs latest
 asdf global nodejs latest
@@ -20,7 +19,8 @@ npm install -g textlint-rule-preset-ja-spacing
 npm install -g textlint-rule-write-good
 
 # install git delta
-curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+. "$HOME/.cargo/env"
 sudo apt install -y gcc
 cargo install git-delta
 
