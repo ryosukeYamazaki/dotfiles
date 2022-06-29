@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # 依存関係のインストール
 sudo apt update
 sudo apt install -y tmux
