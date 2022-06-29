@@ -1,8 +1,10 @@
 #!/bin/sh
 # 依存関係のインストール
 sudo apt update
+sudo apt install tmux
 sudo apt install direnv
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+. $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
 
 # install textlint
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
