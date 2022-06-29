@@ -22,18 +22,18 @@ sudo apt install gcc
 cargo install git-delta
 
 
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.gitignore ~/.gitignore
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
-sudo ln -sf ~/dotfiles/textlint.sh /usr/local/bin/textlint.sh
+ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
+ln -sf $(pwd)/.gitignore ~/.gitignore
+ln -sf $(pwd)/.gitconfig ~/.gitconfig
+sudo ln -sf $(pwd)/textlint.sh /usr/local/bin/textlint.sh
 if [ ! -e ~/.config/textlint ]; then
     mkdir -p ~/.config/textlint
 fi
-ln -sf ~/dotfiles/textlint/textlintrc_ja.json ~/.config/textlint/textlintrc_ja.json
-ln -sf ~/dotfiles/textlint/textlintrc_en.json ~/.config/textlint/textlintrc_en.json
+ln -sf $(pwd)/textlint/textlintrc_ja.json ~/.config/textlint/textlintrc_ja.json
+ln -sf $(pwd)/textlint/textlintrc_en.json ~/.config/textlint/textlintrc_en.json
 
 if [ ! -e ~/.config/gh ]; then
     mkdir -p ~/.config/gh
 fi
-ln -sf ~/dotfiles/.config/gh/config.yml ~/.config/gh/config.yml
-ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
+ln -sf $(pwd)/.config/gh/config.yml ~/.config/gh/config.yml
+ln -sf $(pwd)/.bash_profile ~/.bash_profile
