@@ -5,6 +5,7 @@ sudo apt install -y tmux
 sudo apt install -y direnv
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 . $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
+exec $SHELL -l
 
 # install textlint
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
