@@ -30,7 +30,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 sudo apt install -y gcc
 cargo install git-delta
 
-
+ln -sf $(pwd)/.emacs.d ~/.emacs.d
 ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
 ln -sf $(pwd)/.gitignore ~/.gitignore
 ln -sf $(pwd)/.gitconfig ~/.gitconfig
