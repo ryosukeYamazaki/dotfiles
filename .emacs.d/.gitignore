@@ -1,0 +1,17 @@
+/auto-save-list
+*~
+.lsp-session-v1
+/todo
+\#*
+/elpa
+/elpa-*
+/.cache/
+/.cask/
+recentf
+rake.cache
+projectile-bookmarks.eld
+projectile.cache
+/meghanada/*
+/eshell/*
+tramp
+transient/*
