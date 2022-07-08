@@ -20,4 +20,7 @@
   :ensure t :after lsp-mode
   :config
   (dap-mode t)
-    (dap-ui-mode t))
+  (dap-ui-mode t)
+  :custom
+  (dap-auto-configure-features '(sessions locals breakpoints expressions repl controls tooltip))
+  )

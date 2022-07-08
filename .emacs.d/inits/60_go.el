@@ -21,3 +21,4 @@
                           ;(setq indent-tabs-mode nil)    ; タブを利用
                           ;(setq c-basic-offset 2)        ; tabサイズを2にする
                           (setq tab-width 2)))
+(require 'dap-dlv-go)
