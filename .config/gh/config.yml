@@ -2,3 +2,4 @@ aliases:
     pc: pr checkout
     ps: pr status
     pv: pr view
+version: "1"

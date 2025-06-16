@@ -24,12 +24,6 @@
 ;; ctrl-hをバックスペースとして使う。
 (global-set-key "\C-h" 'delete-backward-char)
 
-;; バッファの左側に行番号を表示する
-(global-linum-mode t)
-;; 表示領域のフォーマットを確保する
-(setq linum-format "%d ")
-(column-number-mode t); 行番号と列番号を表示する
-
 ;; 括弧のペアとかは適宜入れて欲しい
 (electric-pair-mode t)
 
@@ -82,6 +76,21 @@
                     :foreground "gray40"
                     :background "gray20"
                     :underline nil)
+
+;; 行数表示
+(if (version<= "26.0.50" emacs-version)
+    (progn
+      (global-display-line-numbers-mode)
+      (defun display-line-numbers-color-on-after-init (frame)
+        "Hook function executed after FRAME is generated."
+        (unless (display-graphic-p frame)
+          (set-face-background
+           'line-number
+           (plist-get base16-solarized-dark-colors :base01))))
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (display-line-numbers-color-on-after-init frame)))
+      ))
 
 ;; 空白表示の設定
 (global-whitespace-mode 1)

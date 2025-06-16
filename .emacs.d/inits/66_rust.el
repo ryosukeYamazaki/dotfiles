@@ -8,4 +8,4 @@
   :ensure t
   :hook (rust-mode . cargo-minor-mode))
 
-(add-hook 'rust-mode-hook 'lsp)
+;; (add-hook 'rust-mode-hook 'lsp)

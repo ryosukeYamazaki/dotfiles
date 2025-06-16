@@ -13,3 +13,7 @@ GTAGS
 *~
 .#*
 \#*
+straight
+tree-sitter
+url
+.dap-breakpoints

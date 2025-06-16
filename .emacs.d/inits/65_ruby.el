@@ -12,7 +12,7 @@
 ;; (add-hook 'ruby-mode-hook
 ;;           (lambda()
 ;;             (setq tab-width 2 indent-tabs-mode nil)))
-(add-hook 'ruby-mode-hook 'lsp)
+;; (add-hook 'ruby-mode-hook 'lsp)
 ;; magic comment 無効
 (setq ruby-insert-encoding-magic-comment nil)
 (setq lsp-solargraph-use-bundler t)
