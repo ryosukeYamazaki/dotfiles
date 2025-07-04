@@ -27,8 +27,8 @@
 ;; (add-to-list 'exec-path "./node_modules/.bin")
 
 (use-package typescript-ts-mode
-  :mode (("\\\\.tsx\\\\'" . tsx-ts-mode)
-         ("\\\\.ts\\\\'" . tsx-ts-mode))
+  :mode (("\\.tsx?\\'" . tsx-ts-mode)
+         ("\\.ts?\\'" . tsx-ts-mode))
   :config
   (setq typescript-ts-mode-indent-offset 2))
 
@@ -45,3 +45,9 @@
     (tide-hl-identifier-mode +1)
     (company-mode +1))
   (setq company-tooltip-align-annotations t))
+
+(add-hook 'tsx-ts-mode-hook 'copilot-mode)
+
+;; (add-to-list 'auto-mode-alist '("\\.tsx?\\" . copliot))
+
+;; (provide '71_typescript);;;
