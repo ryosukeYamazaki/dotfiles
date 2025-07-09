@@ -5,6 +5,9 @@
 (global-rbenv-mode)
 (setq rbenv-installation-dir "~/.rbenv")
 
+(yas-reload-all)
+(add-hook 'ruby-mode-hook #'yas-minor-mode)
+
 ;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
 ;; (add-hook 'ruby-mode-hook 'flycheck-mode)
 ;; (use-package rubocop :ensure t)

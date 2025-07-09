@@ -1,6 +1,7 @@
 (use-package madhat2r-theme :ensure t)
 ;; (unless (require 'madhat2r-theme nil t)
 ;;   (package-install 'madhat2r-theme))
+(load-theme 'madhat2r t)
 
 (show-paren-mode t)
 (setq show-paren-delay 0) ;表示までの秒数。初期値は0.125
@@ -27,21 +28,6 @@
 ;; 括弧のペアとかは適宜入れて欲しい
 (electric-pair-mode t)
 
-;; yanipetの設定
-;; (unless (require 'yasnippet nil t)
-;;   (package-install 'yasnippet))
-(use-package yasnippet :ensure t)
-(yas/load-directory "~/.emacs.d/snippets")
-(yas-global-mode 1)
-;; 既存スニペットを挿入する
-(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
-;; 新規スニペットを作成するバッファを用意する
-(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
-;; 既存スニペットを閲覧・編集する
-(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
-
-;; color theme
-(load-theme 'madhat2r t)
 
 ;; ediffの設定
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
