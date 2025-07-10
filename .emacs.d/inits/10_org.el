@@ -1,16 +1,14 @@
-;;; org-mode --- config
-(setq org-directory "~/Documents/org")
+;;; org-mode --- org mode, org-journalの設定
 
-(setq org-default-notes-file "notes.org")
-; Org-captureの設定
+;;; Commentary:
 
-; Org-captureを呼び出すキーシーケンス
-(define-key global-map "\C-cc" 'org-capture)
+;;; Code:
 
 (use-package org-journal
   :ensure t
   :defer t  ; Emacs起動を高速化するため、必要になるまで読み込みを遅延
   :init
+  :config
   ;; ジャーナルファイルを保存するディレクトリを指定
   (setq org-journal-dir "~/Documents/org/journal/")
   ;; ファイル名のフォーマットを指定（例: 2025-07-04.org）
@@ -26,7 +24,12 @@
   ;; おすすめのキーバインド（"C-c n j" -> note journal のような覚え方）
   ("C-c n j" . org-journal-new-entry))
 
-(setq org-capture-templates
+(use-package org
+  :ensure t
+  :config
+  (setq org-directory "~/Documents/org")
+  (setq org-default-notes-file "notes.org")
+  (setq org-capture-templates
         `(("j" "Journal Entry"; "j" がキャプチャのキー
            ;; ファイルの場所を org-journal の設定と動的に同期させる
            entry (file
@@ -37,5 +40,15 @@
                   )
            "** \n:PROPERTIES:\n:CREATED: %T\n:END:\n%i\n %a" ; キャプチャする内容のテンプレート
            :empty-lines 1)))
+  :bind
+  (("C-c c" . org-capture))
+  )
+
+; Org-captureを呼び出すキーシーケンス
+;; (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-log-done 'time)
+
+(provide '10_org)
+
+;;; 10_org.el ends here
