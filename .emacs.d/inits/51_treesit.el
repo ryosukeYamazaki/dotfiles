@@ -1,3 +1,9 @@
+;;; tree-sitter --- tree-sitter関連の設定
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package treesit
   :config
   (setq treesit-font-lock-level 4))
@@ -24,3 +30,5 @@
   (tree-sitter-require 'tsx)
   (add-to-list 'tree-sitter-major-mode-language-alist '(tsx-ts-mode . tsx)))
 
+(provide '51_treesit)
+;;; 51_treesit.el ends here

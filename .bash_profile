@@ -29,14 +29,6 @@ fi
 export AWS_DEFAULT_REGION=ap-northeast-1
 
 
-lssh () {
-  IP=$(lsec2 $@ | peco | awk -F "\t" '{print $2}')
-  if [ $? -eq 0 -a "${IP}" != "" ]
-  then
-      ssh ${IP}
-  fi
-}
-
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 

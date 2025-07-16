@@ -8,10 +8,14 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githu
 sudo apt update
 sudo apt install -y tmux
 sudo apt install -y direnv
+sudo apt-get install emacs-mozc emacs-mozc-bin
 sudo apt install -y emacs
 sudo apt install -y gh
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
-. $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
+if [ ! -e ~/.asdf ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+fi
+
+source $HOME/.asdf/asdf.sh # installするために一時的にasdfを読み込む
 
 # install textlint
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -26,7 +30,7 @@ npm install -g textlint-rule-write-good
 
 # install git delta
 curl https://sh.rustup.rs -sSf | sh -s -- -y
-. "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 sudo apt install -y gcc
 cargo install git-delta
 

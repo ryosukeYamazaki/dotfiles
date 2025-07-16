@@ -17,3 +17,4 @@ straight
 tree-sitter
 url
 .dap-breakpoints
+.emacs.d/eln-cache/
