@@ -8,6 +8,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githu
 sudo apt update
 sudo apt install -y tmux
 sudo apt install -y direnv
+sudo apt install pass
+sudo apt install xsel
 sudo apt-get install emacs-mozc emacs-mozc-bin
 sudo apt install -y emacs
 sudo apt install -y gh
@@ -50,3 +52,7 @@ if [ ! -e ~/.config/gh ]; then
 fi
 ln -sf $(pwd)/.config/gh/config.yml ~/.config/gh/config.yml
 ln -sf $(pwd)/.bash_profile ~/.bash_profile
+if [ ! -e ~/.gnupg ]; then
+    mkdir -p ~/.gnupg
+    ln -sf $(pwd)/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+fi

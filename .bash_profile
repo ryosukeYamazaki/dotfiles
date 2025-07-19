@@ -38,3 +38,5 @@ alias relogin='exec $SHELL -l'
 eval "$(gh completion -s bash)"
 . "$HOME/.cargo/env"
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
+# 事前に pass insert global/gemini_api_key が実行されていることを期待する
+export GEMINI_API_KEY=$(pass show global/gemini_api_key)

@@ -1,6 +1,6 @@
 (use-package madhat2r-theme :ensure t)
 ;; (unless (require 'madhat2r-theme nil t)
-;;   (package-install 'madhat2r-theme))
+;;  (package-install 'madhat2r-theme))
 (load-theme 'madhat2r t)
 
 (show-paren-mode t)

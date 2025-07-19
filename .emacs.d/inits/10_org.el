@@ -19,7 +19,6 @@
          "#+title: %<%Y-%m-%d %A>\n\n" ; タイトルに日付と曜日を入れる
          "* Tasks\n\n"
          "* Notes\n\n"))
-
   :bind
   ;; おすすめのキーバインド（"C-c n j" -> note journal のような覚え方）
   ("C-c n j" . org-journal-new-entry))

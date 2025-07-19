@@ -7,6 +7,8 @@
 (use-package mozc
   :commands mozc
   :ensure t
+  :config
+  (setq mozc-candidate-style 'echo-area)
   )
 (set-language-environment "Japanese")
 (setq default-input-method "japanese-mozc")

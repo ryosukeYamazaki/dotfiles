@@ -1,2 +1,2 @@
-# bind -t emacs-copy M-w copy-pipe 'xclip -i -selection clipboard'
-# bind -t emacs-copy C-w copy-pipe 'xclip -i -selection clipboard'
+# xselを使ってクリップボード連携
+# bind-key ] run-shell "xsel -o | tmux load-buffer - ; tmux paste-buffer"
