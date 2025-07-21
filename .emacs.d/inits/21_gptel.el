@@ -8,7 +8,7 @@
   :config
   (setq gptel-backend (gptel-make-gemini "Gemini"
                         :key (getenv "GEMINI_API_KEY")
-                        :models '(gemini-2.5-flash)
+                        :models '(gemini-2.5-pro)
                         :stream t)))
 
 ;;; 21_gptel.el ends here
