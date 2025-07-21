@@ -46,6 +46,9 @@
 ; Org-captureを呼び出すキーシーケンス
 ;; (define-key global-map "\C-cc" 'org-capture)
 
+;; Org-mode で折返し設定を行うオプションの設定方法
+(add-hook 'org-mode-hook #'visual-line-mode)
+
 (setq org-log-done 'time)
 
 (provide '10_org)

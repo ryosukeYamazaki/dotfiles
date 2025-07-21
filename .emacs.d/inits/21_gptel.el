@@ -6,6 +6,7 @@
 (use-package gptel
   :ensure t
   :config
+  (setq gptel-default-mode 'org-mode)
   (setq gptel-backend (gptel-make-gemini "Gemini"
                         :key (getenv "GEMINI_API_KEY")
                         :models '(gemini-2.5-pro)
