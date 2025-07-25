@@ -10,9 +10,10 @@ sudo apt install -y tmux
 sudo apt install -y direnv
 sudo apt install pass
 sudo apt install xsel
-sudo apt-get install emacs-mozc emacs-mozc-bin
+sudo apt install emacs-mozc emacs-mozc-bin
 sudo apt install -y emacs
 sudo apt install -y gh
+sudo apt install -y netcat-openbsd wl-copy
 if [ ! -e ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 fi
@@ -40,6 +41,7 @@ ln -sf $(pwd)/.emacs.d ~/.emacs.d
 ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
 ln -sf $(pwd)/.gitignore ~/.gitignore
 ln -sf $(pwd)/.gitconfig ~/.gitconfig
+
 sudo ln -sf $(pwd)/textlint.sh /usr/local/bin/textlint.sh
 if [ ! -e ~/.config/textlint ]; then
     mkdir -p ~/.config/textlint
@@ -51,8 +53,35 @@ if [ ! -e ~/.config/gh ]; then
     mkdir -p ~/.config/gh
 fi
 ln -sf $(pwd)/.config/gh/config.yml ~/.config/gh/config.yml
+if [ ! -e ~/.config/systemd/user ]; then
+    mkdir -p ~/.config/systemd/user
+fi
+ln -sf $(pwd)/.config/systemd/user/nc-clipboard-listener.service ~/.config/systemd/user/nc-clipboard-listener.service
+systemctl --user daemon-reload
+systemctl --user enable --now nc-clipboard-listener.service
+
 ln -sf $(pwd)/.bash_profile ~/.bash_profile
 if [ ! -e ~/.gnupg ]; then
     mkdir -p ~/.gnupg
     ln -sf $(pwd)/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 fi
+
+# ----------------------------------------------------------------------
+# ★ 追加・修正：リモートサーバーのファイアウォール(ufw)を安全に設定
+# ----------------------------------------------------------------------
+echo "Configuring firewall (ufw) for secure port forwarding..."
+
+# 念のため、過去に設定した可能性のある安全でないルールを削除
+# --non-interactive をつけることで、ルールが存在しない場合にエラーで止まるのを防ぐ
+sudo ufw --non-interactive delete allow 8888/tcp
+
+# localhost(127.0.0.1)からのポート8888へのTCP通信のみを許可する安全なルールを追加
+# ufw status numbered でルールを確認し、同じルールがなければ追加する
+if ! sudo ufw status | grep -q "8888/tcp.*ALLOW IN.*127.0.0.1"; then
+    echo "Adding secure firewall rule for port 8888..."
+    sudo ufw allow from 127.0.0.1 to any port 8888 proto tcp
+else
+    echo "Secure firewall rule for port 8888 already exists."
+fi
+
+echo "Firewall configuration complete."

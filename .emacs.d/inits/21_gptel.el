@@ -7,7 +7,7 @@
   :ensure t
   :config
   (setq gptel-default-mode 'org-mode)
-  (setq gptel-api-key (getenv "CHATGPT_API_KEY"))
+  (setq gptel-api-key (getenv "CHATGPT_API_KEY")) ;; chatGPTだけ特別にこのようにする。
   (gptel-make-anthropic "Claude"
     :key (getenv "CLAUDE_API_KEY")
     :models '(claude-3-7-sonnet-20250219)

@@ -8,7 +8,7 @@
   :ensure t
   :hook
   (ruby-mode . eglot-ensure)
-  (web-mode . eglot-ensure)
+  (tsx-ts-mode . eglot-ensure)
   (go-mode . eglot-ensure)
   )
 

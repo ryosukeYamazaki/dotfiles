@@ -18,9 +18,6 @@ parse_git_branch() {
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \n$ "
 export PS2=${PS1}
 
-# fro redis session
-export USE_REDIS_SESSION_STORE=1
-
 # 会社用の環境変数とか
 if [ -f ~/.bash_profile_for_work ] ; then
 . ~/.bash_profile_for_work

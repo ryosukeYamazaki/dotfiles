@@ -1,0 +1,11 @@
+[Unit]
+Description=Netcat clipboard listener for remote Emacs copy
+
+[Service]
+# ncコマンドでポート9999を待ち受け、受け取った標準入力をxclipでクリップボードに送る
+ExecStart=/bin/sh -c 'while true; do nc -l -p 9999 | wl-copy; done'
+Restart=always
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=default.target
