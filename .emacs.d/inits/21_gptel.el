@@ -12,10 +12,6 @@
     :key (getenv "CLAUDE_API_KEY")
     :models '(claude-3-7-sonnet-20250219)
     :stream t)
-  (gptel-make-anthropic "Claude"
-    :key (getenv "CLAUDE_API_KEY")
-    :models '(claude-3-7-sonnet-20250219)
-    :stream t)
   (setq gptel-backend (gptel-make-gemini "Gemini"
                         :key (getenv "GEMINI_API_KEY")
                         :models '(gemini-2.5-pro)

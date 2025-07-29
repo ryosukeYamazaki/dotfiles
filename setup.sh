@@ -14,6 +14,11 @@ sudo apt install emacs-mozc emacs-mozc-bin
 sudo apt install -y emacs
 sudo apt install -y gh
 sudo apt install -y netcat-openbsd wl-copy
+# PGPキーを追加
+sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+# リポジトリを追加
+echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+sudo apt-get install syncthing
 if [ ! -e ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
 fi
@@ -85,3 +90,5 @@ else
 fi
 
 echo "Firewall configuration complete."
+
+

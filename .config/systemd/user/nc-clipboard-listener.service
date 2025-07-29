@@ -6,6 +6,5 @@ Description=Netcat clipboard listener for remote Emacs copy
 ExecStart=/bin/sh -c 'while true; do nc -l -p 9999 | wl-copy; done'
 Restart=always
 KillSignal=SIGTERM
-
 [Install]
 WantedBy=default.target
