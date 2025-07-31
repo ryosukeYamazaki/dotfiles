@@ -4,29 +4,10 @@
 
 ;;; Code:
 
-;; (use-package org-journal
-;;   :ensure t
-;;   :defer t  ; Emacs起動を高速化するため、必要になるまで読み込みを遅延
-;;   :init
-;;   :config
-;;   ;; ジャーナルファイルを保存するディレクトリを指定
-;;   (setq org-journal-dir "~/Documents/org/journal/")
-;;   ;; ファイル名のフォーマットを指定（例: 2025-07-04.org）
-;;   (setq org-journal-file-format "%Y-%m-%d.org")
-;;   ;; 新しいファイルを作成した際のテンプレート
-;;   (setq org-journal-new-entry-template
-;;         (concat
-;;          "#+title: %<%Y-%m-%d %A>\n\n" ; タイトルに日付と曜日を入れる
-;;          "* Tasks\n\n"
-;;          "* Notes\n\n"))
-;;   :bind
-;;   ;; おすすめのキーバインド（"C-c n j" -> note journal のような覚え方）
-;;   ("C-c n j" . org-journal-new-entry))
-
 (use-package org
   :ensure t
   :config
-  (setq org-directory "~/Documents/riverside-atelier/content")
+  (setq org-directory "~/Documents/riverside-atelier/org_sources")
   (setq org-default-notes-file "notes.org")
   :bind
   (("C-c c" . org-capture))
@@ -38,9 +19,9 @@
    (setq org-roam-v2-ack t) ; v2を利用する場合
    :custom
    (org-roam-directory
-    (file-truename "~/Documents/riverside-atelier/content"))
+    (file-truename "~/Documents/riverside-atelier/org_sources"))
    (org-roam-db-location
-    (file-truename "~/Documents/riverside-atelier/content/org-roam.db"))
+    (file-truename "~/Documents/riverside-atelier/org_sources/org-roam.db"))
    :config
    ;; Org-roam本体の有効化
    (org-roam-setup)
@@ -66,11 +47,20 @@
 (use-package ox-hugo
   :ensure t
   :after ox
-  :config
-  (setq org-hugo-base-dir "~/Documents/riverside-atelier"))
+)
 
-; Org-captureを呼び出すキーシーケンス
-;; (define-key global-map "\C-cc" 'org-capture)
+(defun my-hugo-export-all-org-sources ()
+  "Export all .org files from `org_sources` to Hugo's content directory."
+  (interactive)
+  (let* ((org-sources-path (expand-file-name "org_sources" "~/Documents/riverside-atelier/"))
+         (org-files (directory-files-recursively org-sources-path "\\.org$")))
+    (when (y-or-n-p (format "Export %d Org files to Markdown?" (length org-files)))
+      (dolist (file org-files)
+        (with-current-buffer (find-file-noselect file)
+          (message "Exporting %s ..." (buffer-name))
+          ;; Export the whole file to one Markdown file
+          (org-hugo-export-wim-to-md nil 'async)))
+      (message "✅ All Org source files have been exported."))))
 
 ;; Org-mode で折返し設定を行うオプションの設定方法
 (add-hook 'org-mode-hook #'visual-line-mode)
