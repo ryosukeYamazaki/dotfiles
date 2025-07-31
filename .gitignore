@@ -20,3 +20,4 @@ url
 .emacs.d/eln-cache/
 .emacs.d/projects
 .emacs.d/bookmarks
+.emacs.d/.org-id-locations
