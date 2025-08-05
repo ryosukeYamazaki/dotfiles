@@ -31,11 +31,11 @@
    (setq org-roam-capture-templates
          '(("d" "default" plain "%?"
             :target (file+head "sketches/nodes/%<%Y%m%d%H%M%S>-${slug}.org" ; ← "nodes/" を追加
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches/nodes\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
    (setq org-roam-dailies-capture-templates
          `(("d" "default" entry "* %?"
             :target (file+head "%<%Y-%m-%d>.org"
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: %<%Y-%m-%d>\n#+HUGO_SECTION: sketches\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: %<%Y-%m-%d>\n#+HUGO_SECTION: sketches/dailies\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
    ;; ショートカットキーの設定例
    :bind (("C-c n l" . org-roam-buffer-toggle)
           ("C-c n f" . org-roam-node-find)

@@ -1,0 +1,8 @@
+# -*- mode: org-mode -*-
+# name: gptel_topic
+# key: gptopic
+# --
+
+:PROPERTIES:
+:GPTEL_TOPIC:
+:END:
