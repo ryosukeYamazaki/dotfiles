@@ -31,11 +31,11 @@
    (setq org-roam-capture-templates
          '(("d" "default" plain "%?"
             :target (file+head "sketches/nodes/%<%Y%m%d%H%M%S>-${slug}.org" ; ← "nodes/" を追加
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches/nodes\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches/nodes\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
    (setq org-roam-dailies-capture-templates
          `(("d" "default" entry "* %?"
             :target (file+head "%<%Y-%m-%d>.org"
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: %<%Y-%m-%d>\n#+HUGO_SECTION: sketches/dailies\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: %<%Y-%m-%d>\n#+HUGO_SECTION: sketches/dailies\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
    ;; ショートカットキーの設定例
    :bind (("C-c n l" . org-roam-buffer-toggle)
           ("C-c n f" . org-roam-node-find)
@@ -58,8 +58,7 @@
       (dolist (file org-files)
         (with-current-buffer (find-file-noselect file)
           (message "Exporting %s ..." (buffer-name))
-          ;; Export the whole file to one Markdown file
-          (org-hugo-export-wim-to-md nil 'async)))
+          (org-hugo-export-wim-to-md))) ;; (org-hugo-export-wim-to-md nil 'async)
       (message "✅ All Org source files have been exported."))))
 
 ;; Org-mode で折返し設定を行うオプションの設定方法
