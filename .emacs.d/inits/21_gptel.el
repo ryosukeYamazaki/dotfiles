@@ -6,7 +6,14 @@
 (use-package gptel
   :ensure t
   :config
-  (setq gptel-default-mode 'org-mode)
+  (require 'gptel-integrations)
+  (require 'gptel-org)
+  (setq gptel-default-mode 'org-mode
+        gptel-use-curl t
+        gptel-use-tools t
+        gptel-confirm-tool-calls 'always
+        gptel-include-tool-results 'auto
+        gptel-org-branching-context t)
   (setq gptel-api-key (getenv "CHATGPT_API_KEY")) ;; chatGPTだけ特別にこのようにする。
   (gptel-make-anthropic "Claude"
     :key (getenv "CLAUDE_API_KEY")
