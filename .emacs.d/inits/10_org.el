@@ -23,15 +23,16 @@
    (org-roam-db-location
     (file-truename "~/Documents/riverside-atelier/org_sources/org-roam.db"))
    :config
-   ;; Org-roam本体の有効化
    (org-roam-setup)
-   ;; Dailies機能（日記機能）の設定
    (require 'org-roam-dailies)
    (setq org-roam-dailies-directory "sketches/dailies/")
    (setq org-roam-capture-templates
          '(("d" "default" plain "%?"
             :target (file+head "sketches/nodes/%<%Y%m%d%H%M%S>-${slug}.org" ; ← "nodes/" を追加
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches/nodes\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches/nodes\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))
+           ("p" "post" plain "%?"
+            :target (file+head "posts/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: posts\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
    (setq org-roam-dailies-capture-templates
          `(("d" "default" entry "* %?"
             :target (file+head "%<%Y-%m-%d>.org"

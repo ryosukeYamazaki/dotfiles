@@ -28,6 +28,8 @@ export AWS_DEFAULT_REGION=ap-northeast-1
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+source $HOME/.local/bin/env # (sh, bash, zsh)
+# source $HOME/.local/bin/env.fish # (fish)
 
 alias em='emacs -nw'
 alias g='git'
@@ -39,3 +41,5 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export GEMINI_API_KEY=$(pass show global/gemini_api_key)
 export CLAUDE_API_KEY=$(pass show global/claude-api-key)
 export CHATGPT_API_KEY=$(pass show global/chatgpt-api-key)
+
+. "$HOME/.local/bin/env"
