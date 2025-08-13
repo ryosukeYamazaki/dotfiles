@@ -26,17 +26,29 @@
    (org-roam-setup)
    (require 'org-roam-dailies)
    (setq org-roam-dailies-directory "sketches/dailies/")
+   (defun my-org-roam-hugo-header (title section)
+     "Generate a common HUGO header for org-roam templates."
+     (format (string-join
+              '("#+EXPORT_HUGO_PRIVATE: t"
+                "#+AUTHOR: moai"
+                "#+title: %s"
+                "#+HUGO_SECTION: %s"
+                "#+hugo_paired_shortcodes: reasoning"
+                "#+HUGO_AUTO_SET_LASTMOD: t"
+                "")
+              "\n")
+             title section))
    (setq org-roam-capture-templates
-         '(("d" "default" plain "%?"
-            :target (file+head "sketches/nodes/%<%Y%m%d%H%M%S>-${slug}.org" ; ← "nodes/" を追加
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: sketches/nodes\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))
+         `(("d" "default" plain "%?"
+            :target (file+head "sketches/nodes/%<%Y%m%d%H%M%S>-${slug}.org"
+                               ,(my-org-roam-hugo-header "${title}" "sketches/nodes")))
            ("p" "post" plain "%?"
             :target (file+head "posts/%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: ${title}\n#+HUGO_SECTION: posts\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               ,(my-org-roam-hugo-header "${title}" "posts")))))
    (setq org-roam-dailies-capture-templates
          `(("d" "default" entry "* %?"
             :target (file+head "%<%Y-%m-%d>.org"
-                               "#+EXPORT_HUGO_PRIVATE: t\n#+AUTHOR: moai\n#+title: %<%Y-%m-%d>\n#+HUGO_SECTION: sketches/dailies\n#+hugo_paired_shortcodes: reasoning\n#+HUGO_AUTO_SET_LASTMOD: t\n"))))
+                               ,(my-org-roam-hugo-header "%<%Y-%m-%d>" "sketches/dailies")))))
    ;; ショートカットキーの設定例
    :bind (("C-c n l" . org-roam-buffer-toggle)
           ("C-c n f" . org-roam-node-find)
@@ -44,6 +56,7 @@
           ("C-c n d" . org-roam-dailies-capture-today) ;<- 新しい日記作成コマンド
           :map org-mode-map
           ("C-M-i" . completion-at-point)))
+
 
 (use-package ox-hugo
   :ensure t
