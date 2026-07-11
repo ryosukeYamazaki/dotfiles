@@ -2,8 +2,8 @@
 	helper = store
 [user]
 	name = ryosukeYamazaki
-	email = hamilton0826@gmail.com
-	signingkey = ~/.ssh/id_ed25519.pub
+	email = hamilton0826+github@gmail.com
+	signingkey = /Users/ryosuke.yamazaki/.ssh/id_ed25519.pub
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
@@ -66,3 +66,5 @@
 	format = ssh
 [init]
 	defaultBranch = main
+[gpg "ssh"]
+	allowedSignersFile = /Users/ryosuke.yamazaki/.config/git/allowed_signers

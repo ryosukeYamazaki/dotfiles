@@ -1,7 +1,7 @@
 ;; ruby用
 ;; rbenv
 ;; (setq ruby-insert-encoding-magic-comment nil)
-(use-package rbenv :ensure t)
+(use-package rbenv)
 (global-rbenv-mode)
 (setq rbenv-installation-dir "~/.rbenv")
 
@@ -10,7 +10,7 @@
 
 ;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
 ;; (add-hook 'ruby-mode-hook 'flycheck-mode)
-;; (use-package rubocop :ensure t)
+;; (use-package rubocop)
 ;; (add-hook 'ruby-mode-hook 'rubocop-mode)
 ;; (add-hook 'ruby-mode-hook
 ;;           (lambda()

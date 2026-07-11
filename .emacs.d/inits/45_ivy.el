@@ -1,5 +1,5 @@
 ;; ivy
-(use-package ivy :ensure t)
+(use-package ivy)
 (when (require 'ivy nil t)
 
   ;; M-o を ivy-hydra-read-action に割り当てる．
@@ -24,7 +24,7 @@
 
   ;; アクティベート
   (ivy-mode 1))
-(use-package counsel :ensure t)
+(use-package counsel)
 (when (require 'counsel nil t)
 
   ;; キーバインドは一例です．好みに変えましょう．
@@ -37,7 +37,7 @@
 
   ;; アクティベート
   (counsel-mode 1))
-(use-package swiper :ensure t)
+(use-package swiper)
 (when (require 'swiper nil t)
 
   ;; キーバインドは一例です．好みに変えましょう．

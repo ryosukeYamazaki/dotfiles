@@ -4,17 +4,22 @@
 
 ;;; Code:
 
+(straight-use-package 'org)
+
 (use-package org
-  :ensure t
+  :straight t
   :config
   (setq org-directory "~/Documents/riverside-atelier/org_sources")
   (setq org-default-notes-file "notes.org")
+  (setq org-agenda-files
+        '("~/Documents/riverside-atelier/org_sources/sketches/tasks.org" "~/Documents/riverside-atelier/org_sources/sketches/projects.org"))
+  (setq org-todo-keywords
+         '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELLED")))
   :bind
   (("C-c c" . org-capture))
   )
 
 (use-package org-roam
-   :ensure t
    :init
    (setq org-roam-v2-ack t) ; v2を利用する場合
    :custom
@@ -42,6 +47,10 @@
          `(("d" "default" plain "%?"
             :target (file+head "sketches/nodes/%<%Y%m%d%H%M%S>-${slug}.org"
                                ,(my-org-roam-hugo-header "${title}" "sketches/nodes")))
+           ("l" "llm" plain "%?"
+            :target (file+head "sketches/llm_talk/%<%Y%m%d%H%M%S>-${slug}.org"
+                               ,(my-org-roam-hugo-header "${title}" "sketches/llm_talk"))
+            :unnarrowed t)
            ("p" "post" plain "%?"
             :target (file+head "posts/%<%Y%m%d%H%M%S>-${slug}.org"
                                ,(my-org-roam-hugo-header "${title}" "posts")))))
@@ -53,13 +62,12 @@
    :bind (("C-c n l" . org-roam-buffer-toggle)
           ("C-c n f" . org-roam-node-find)
           ("C-c n i" . org-roam-node-insert)
-          ("C-c n d" . org-roam-dailies-capture-today) ;<- 新しい日記作成コマンド
+          ("C-c n d" . org-roam-dailies-goto-today)
           :map org-mode-map
           ("C-M-i" . completion-at-point)))
 
 
 (use-package ox-hugo
-  :ensure t
   :after ox
 )
 

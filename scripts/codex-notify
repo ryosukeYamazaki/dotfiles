@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Codex passes one JSON payload as the final argument to the notify command.
+payload=${1:-"{}"}
+
+# Keep the Codex desktop app's existing turn-ended integration working.
+desktop_notifier="$HOME/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+if [ -x "$desktop_notifier" ]; then
+    "$desktop_notifier" turn-ended "$payload" >/dev/null 2>&1 &
+fi
+
+# Show an in-tmux message as well, so completion is visible on returning to tmux.
+if [ -n "${TMUX:-}" ] && command -v tmux >/dev/null 2>&1; then
+    tmux display-message 'Codex: 回答が完了しました' >/dev/null 2>&1 || true
+fi
+
+# Use argv rather than interpolating text into AppleScript, avoiding quoting issues.
+/usr/bin/osascript - "$payload" <<'APPLESCRIPT' >/dev/null 2>&1
+on run argv
+    set payload to item 1 of argv
+    set notificationBody to "回答が完了しました"
+
+    try
+        set cwdMarker to "\"cwd\":\""
+        set markerOffset to offset of cwdMarker in payload
+        if markerOffset > 0 then
+            set cwdStart to markerOffset + (length of cwdMarker)
+            set cwdTail to text cwdStart thru -1 of payload
+            set cwdEnd to (offset of "\"" in cwdTail) - 1
+            if cwdEnd > 0 then
+                set notificationBody to "完了: " & text 1 thru cwdEnd of cwdTail
+            end if
+        end if
+    end try
+
+    display notification notificationBody with title "Codex"
+end run
+APPLESCRIPT

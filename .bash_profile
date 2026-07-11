@@ -40,6 +40,6 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
 # 事前に pass insert global/gemini_api_key が実行されていることを期待する
 export GEMINI_API_KEY=$(pass show global/gemini_api_key)
 export CLAUDE_API_KEY=$(pass show global/claude-api-key)
-export CHATGPT_API_KEY=$(pass show global/chatgpt-api-key)
+# export CHATGPT_API_KEY=$(pass show global/chatgpt-api-key)
 
 . "$HOME/.local/bin/env"

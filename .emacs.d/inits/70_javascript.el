@@ -1,4 +1,13 @@
-;; (use-package web-mode :ensure t)
+(use-package js
+  :ensure nil
+  :mode (("\\.cjs\\'" . js-ts-mode)
+         ("\\.js\\'" . js-ts-mode)
+         ("\\.mjs\\'" . js-ts-mode))
+  :hook (js-ts-mode . copilot-mode)
+  :config
+  (setq js-indent-level 2))
+
+;; (use-package web-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.es$" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
@@ -32,7 +41,7 @@
 ;;     (let ((web-mode-enable-part-face nil))
 ;;       ad-do-it)
 ;;      ad-do-it))
-;; (use-package add-node-modules-path :ensure t)
+;; (use-package add-node-modules-path)
 ;; (add-hook 'web-mode-hook 'add-node-modules-path)
 ;; ;; (add-hook 'web-mode-hook 'lsp)
 ;; (add-to-list 'exec-path "./node_modules/.bin")
@@ -50,4 +59,3 @@
 ;; (add-hook 'web-mode-hook
 ;; 	  (lambda ()
 ;; 	    (add-hook 'after-save-hook #'eslint-fix-file-and-revert)))
-

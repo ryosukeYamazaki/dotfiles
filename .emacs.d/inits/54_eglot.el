@@ -5,7 +5,6 @@
 ;;; Code:
 
 (use-package eglot
-  :ensure t
   :hook
   (ruby-mode . eglot-ensure)
   (tsx-ts-mode . eglot-ensure)

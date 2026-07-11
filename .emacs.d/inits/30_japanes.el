@@ -6,7 +6,6 @@
 
 (use-package mozc
   :commands mozc
-  :ensure t
   :config
   (setq mozc-candidate-style 'echo-area)
   )

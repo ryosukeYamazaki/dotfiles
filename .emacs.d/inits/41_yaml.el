@@ -1,5 +1,5 @@
-(use-package yaml-mode :ensure t)
-;; (use-package highlight-indentation :ensure t)
+(use-package yaml-mode)
+;; (use-package highlight-indentation)
 ;; (setq highlight-indentation-offset 2)
 ;; (set-face-background 'highlight-indentation-face "#191970")
 ;; (set-face-background 'highlight-indentation-current-column-face "#2f4f4f")

@@ -1,24 +1,27 @@
-(require 'package)
-(package-initialize)
+;;;;; straight.el
+(defvar bootstrap-version)
+(setq straight-profiles
+      `((nil . ,(expand-file-name "straight-versions.el"
+                                  user-emacs-directory))))
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         user-emacs-directory))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(setq package-archives
-      '(
-	("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "http://melpa.org/packages/")
-	("org" . "http://orgmode.org/elpa/")
-	)
-      )
-
-(unless package-archive-contents
-  (package-refresh-contents))
-;;;;; ensure to use use-package
-(when (not (package-installed-p 'use-package))
-  (package-install 'use-package))
+(straight-use-package 'use-package)
 (require 'use-package)
+(setq straight-use-package-by-default t)
 
 ;;;;; init-loader
 (use-package init-loader
-  :ensure t
   :config
   (init-loader-load "~/.emacs.d/inits"))
 ;; (custom-set-variables
@@ -45,22 +48,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(indent-tabs-mode nil)
- '(package-selected-packages
-   '(tide tree-sitter-langs tree-sitter treesit-auto dap-go dap-dlv-go cargo rust-mode counsel-projectile counsel ivy mozc helm-rg yasnippet yaml-mode web-mode use-package treemacs-projectile treemacs-icons-dired treemacs-evil rubocop rbenv prettier-js path-headerline-mode magit madhat2r-theme lsp-ui lsp-treemacs init-loader helm-projectile helm-lsp helm-git-grep helm-ag go-guru go-eldoc git-gutter flycheck dap-mode csv-mode company-lsp company-go coffee-mode auto-highlight-symbol ag))
- '(ruby-insert-encoding-magic-comment nil t)
- '(safe-local-variable-values
-   '((vc-default-patch-addressee . "bug-gnu-emacs@gnu.org")
-     (etags-regen-ignores "test/manual/etags/")
-     (etags-regen-regexp-alist
-      (("c" "objc")
-       "/[ \11]*DEFVAR_[A-Z_ \11(]+\"\\([^\"]+\\)\"/\\1/" "/[ \11]*DEFVAR_[A-Z_ \11(]+\"[^\"]+\",[ \11]\\([A-Za-z0-9_]+\\)/\\1/"))
-     (org-hugo-content-dir . "~/Documents/riverside-atelier/org_sources")))
- '(tab-width 2))
 (put 'upcase-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)

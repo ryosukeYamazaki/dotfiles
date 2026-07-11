@@ -6,12 +6,13 @@
 
 (use-package markdown-mode
   :init
+  :mode (("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode))
   :bind
   (("<Tab>" . markdown-cycle)
    ("<S-tab>" . markdown-shifttab)
    ("C-M-n" . outline-next-visible-heading)
    ("C-M-p" . outline-previous-visible-heading)))
-
 
 (provide '12_markdown)
 

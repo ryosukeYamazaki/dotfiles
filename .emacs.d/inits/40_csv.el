@@ -1,1 +1,1 @@
-(use-package csv-mode :ensure t)
+(use-package csv-mode)

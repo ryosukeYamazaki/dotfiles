@@ -1,26 +1,20 @@
-(use-package madhat2r-theme :ensure t)
-;; (unless (require 'madhat2r-theme nil t)
-;;  (package-install 'madhat2r-theme))
-(load-theme 'madhat2r t)
+(use-package modus-themes
+  :config
+  (load-theme 'modus-vivendi t))
 
 (show-paren-mode t)
 (setq show-paren-delay 0) ;表示までの秒数。初期値は0.125
 (setq show-paren-style 'expression)    ;括弧内も強調
 (global-auto-revert-mode 1) ; ファイルが更新されたらreloadする
 
-;; (unless (require ' nil t)
-;;   (package-install ' ))
+(defvar dired-use-ls-dired)
+(setq dired-use-ls-dired nil)
 
 ;; gitの差分表示
-(use-package git-gutter :ensure t)
-;; (unless (require 'git-gutter nil t)
-;;   (package-install 'git-gutter))
-;; (require 'git-gutter)
+(use-package git-gutter)
 (global-git-gutter-mode t)
 
-(use-package which-key :ensure t)
-
-(use-package ag :ensure t)
+(use-package which-key)
 
 ;; ctrl-hをバックスペースとして使う。
 (global-set-key "\C-h" 'delete-backward-char)
@@ -28,13 +22,17 @@
 ;; 括弧のペアとかは適宜入れて欲しい
 (electric-pair-mode t)
 
+(when (display-graphic-p)
+  (set-face-attribute 'default nil
+                      :family "JetBrains Mono"
+                      :height 140))
 
 ;; ediffの設定
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
 ;; 空白表示
-(use-package whitespace :ensure t)
+(use-package whitespace :straight nil)
 (setq whitespace-style '(face           ; faceで可視化
                          trailing       ; 行末
                          tabs           ; タブ
@@ -63,6 +61,8 @@
                     :background "gray20"
                     :underline nil)
 
+
+
 ;; 行数表示
 (if (version<= "26.0.50" emacs-version)
     (progn
@@ -81,41 +81,35 @@
 ;; 空白表示の設定
 (global-whitespace-mode 1)
 ;; pathをheaderに表示させる設定
-(use-package path-headerline-mode :ensure t)
+(use-package path-headerline-mode)
 (path-headerline-mode +1)
 
 ;; auto-highlight
-(use-package auto-highlight-symbol :ensure t)
+(use-package auto-highlight-symbol)
 (global-auto-highlight-symbol-mode t)
 (add-hook 'after-init-hook 'global-auto-highlight-symbol-mode)
 
-(use-package ripgrep :ensure t)
+(use-package ripgrep)
 
 ;; git 用
-(use-package magit :ensure t)
+(use-package compat)
+(use-package transient)
+(use-package magit-section)
+(use-package magit
+  :after (compat transient))
 ;; (use-package magit-delta
-;;       :ensure t
 ;;       :hook (magit-mode . magit-delta-mode))
 (with-eval-after-load "magit"
   (setq magit-completing-read-function 'ivy-completing-read))
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(use-package flycheck :ensure t)
+(use-package flycheck)
 (global-flycheck-mode)
 
-(use-package which-key :ensure t)
+(use-package which-key)
 (which-key-mode)
 
-;; plantUML用の設定
-;; (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
-
-;; 非同期実行した結果は表示しない。rubocopが走ったりしてwindowsがぽこぽこ立ち上がるのを防ぐ。
-;; (add-to-list
-;;  'display-buffer-alist
-;;  (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
-
 (use-package company
-  :ensure t
   :config
   (setq lsp-completion-provider :capf))

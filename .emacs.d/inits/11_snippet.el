@@ -7,7 +7,6 @@
 ;;; Code:
 
 (use-package yasnippet
-  :ensure t
   :config
   ;; スニペットが格納されているディレクトリを指定
   ;; yasnippet-snippets パッケージも利用する場合は、以下のように両方のパスを追加します

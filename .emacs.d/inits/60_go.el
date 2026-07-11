@@ -6,7 +6,6 @@
 
 ;; 必要なパッケージのロード
 (use-package go-mode
-  :ensure t
   :mode ("\\.go\\'" . go-mode)
   :hook
   (go-mode-hook . company-mode)
