@@ -8,7 +8,7 @@
 
 ## Codex の完了通知（macOS）
 
-Codex CLI の回答完了時に、macOS 通知と tmux 内メッセージを表示する。
+Codex CLI の回答完了時に、macOS 通知と tmux 内メッセージを表示する。tmux 内で実行していれば、通知本文に `session:window.pane` 形式のペイン識別子も付く。
 
 `~/.codex/config.toml` のユーザーレベル設定に次を追加する。
 

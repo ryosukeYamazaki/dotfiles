@@ -1,3 +1,6 @@
+;;; package --- 50_init.el -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 (use-package modus-themes
   :config
   (load-theme 'modus-vivendi t))

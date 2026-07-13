@@ -9,6 +9,7 @@
   (ruby-mode . eglot-ensure)
   (tsx-ts-mode . eglot-ensure)
   (go-mode . eglot-ensure)
+  (js-ts-mode . eglot-ensure)
   )
 
 (provide '54_eglot)

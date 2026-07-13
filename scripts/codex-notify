@@ -2,6 +2,7 @@
 
 # Codex passes one JSON payload as the final argument to the notify command.
 payload=${1:-"{}"}
+tmux_label=""
 
 # Keep the Codex desktop app's existing turn-ended integration working.
 desktop_notifier="$HOME/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
@@ -11,13 +12,19 @@ fi
 
 # Show an in-tmux message as well, so completion is visible on returning to tmux.
 if [ -n "${TMUX:-}" ] && command -v tmux >/dev/null 2>&1; then
-    tmux display-message 'Codex: 回答が完了しました' >/dev/null 2>&1 || true
+    tmux_label=$(tmux display-message -p '#S:#I.#P' 2>/dev/null || true)
+    if [ -n "$tmux_label" ]; then
+        tmux display-message "Codex: 回答が完了しました (${tmux_label})" >/dev/null 2>&1 || true
+    else
+        tmux display-message 'Codex: 回答が完了しました' >/dev/null 2>&1 || true
+    fi
 fi
 
 # Use argv rather than interpolating text into AppleScript, avoiding quoting issues.
-/usr/bin/osascript - "$payload" <<'APPLESCRIPT' >/dev/null 2>&1
+/usr/bin/osascript - "$payload" "$tmux_label" <<'APPLESCRIPT' >/dev/null 2>&1
 on run argv
     set payload to item 1 of argv
+    set tmuxLabel to item 2 of argv
     set notificationBody to "回答が完了しました"
 
     try
@@ -32,6 +39,10 @@ on run argv
             end if
         end if
     end try
+
+    if tmuxLabel is not "" then
+        set notificationBody to notificationBody & " [" & tmuxLabel & "]"
+    end if
 
     display notification notificationBody with title "Codex"
 end run
