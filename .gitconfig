@@ -39,15 +39,14 @@
 	cms = commit -m
 	st = status
 	co = checkout
-	cd = checkout develop
+	cm = checkout main
 	df = diff
 	br = branch --sort=committerdate
 	ad = add -p
+	fo = fetch origin
 	poc = push origin HEAD
+	puom = pull origin main
 	pocf = push --force origin HEAD
-	pud = pull upstream develop
-	pum = pull upstream master
-	fu = fetch upstream
 	ls = log --oneline -n 20 upstream/develop..
 	fix = "!f () { git commit -m \"fixup! $1\"; };f"
 	ra = rebase -i --autosquash

@@ -1,5 +1,6 @@
 /auto-save-list
 *~
+*.elc
 .lsp-session-v1
 /todo
 \#*
@@ -11,6 +12,7 @@ recentf
 rake.cache
 projectile-bookmarks.eld
 projectile.cache
+projectile-frecency.eld
 /meghanada/*
 /eshell/*
 tramp
