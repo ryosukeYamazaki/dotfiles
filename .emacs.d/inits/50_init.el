@@ -28,9 +28,9 @@
 (when (display-graphic-p)
   (set-face-attribute 'default nil
                       :family "JetBrains Mono"
-                      :height 140))
+                      :height 180))
 
-;; ediffの設定
+;; ediffの定設
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
