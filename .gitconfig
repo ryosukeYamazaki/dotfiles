@@ -16,7 +16,6 @@
 
 [core]
   editor = emacs -nw
-  excludesfile = ~/.gitignore
   pager = delta
 
 [interactive]

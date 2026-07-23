@@ -9,9 +9,19 @@
   ;;(require 'gptel-org)
   (setq gptel-use-curl t
         gptel-use-tools t
+        gptel-default-mode 'org-mode
         gptel-confirm-tool-calls 'always
         gptel-include-tool-results 'auto
-        gptel--system-message (concat gptel--system-message " Make sure to use Japanese language."))
+        gptel-system-prompt
+        (concat
+         (alist-get 'default gptel-directives)
+         " Respond in Japanese."
+         " Answer the user's request directly and concisely."
+         " Do not end with follow-up questions, offers to help further,"
+         " suggestions for next steps, or phrases such as"
+         " 「必要であれば〜できます」「〜しましょうか？」."
+         " When the user explicitly asks for suggestions or alternatives,"
+         " provide them, but do not append an additional offer afterward."))
   (setq gptel-api-key (getenv "CHATGPT_API_KEY")) ;; chatGPTだけ特別にこのようにする。
   (gptel-make-anthropic "Claude"
     :key (getenv "CLAUDE_API_KEY")

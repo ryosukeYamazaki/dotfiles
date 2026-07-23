@@ -5,7 +5,13 @@
 
 ;;; Code:
 (use-package vterm
-  :defer t)
+  :defer t
+  :config
+  ;; tmuxのprefixであるC-tを避けてcopy modeを切り替える。
+  (define-key vterm-mode-map (kbd "C-c C-t") nil)
+  (define-key vterm-copy-mode-map (kbd "C-c C-t") nil)
+  (define-key vterm-mode-map (kbd "C-c C-s") #'vterm-copy-mode)
+  (define-key vterm-copy-mode-map (kbd "C-c C-s") #'vterm-copy-mode))
 
 (straight-use-package
  '(ai-code-interface :type git :host github

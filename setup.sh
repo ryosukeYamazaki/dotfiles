@@ -45,8 +45,9 @@ cargo install git-delta
 
 ln -sf $(pwd)/.emacs.d ~/.emacs.d
 ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
-ln -sf $(pwd)/.gitignore ~/.gitignore
 ln -sf $(pwd)/.gitconfig ~/.gitconfig
+mkdir -p ~/.config/git
+ln -sf $(pwd)/.config/git/ignore ~/.config/git/ignore
 
 # sudo ln -sf $(pwd)/textlint.sh /usr/local/bin/textlint.sh
 #if [ ! -e ~/.config/textlint ]; then
@@ -91,5 +92,4 @@ fi
 #fi
 
 # echo "Firewall configuration complete."
-
 

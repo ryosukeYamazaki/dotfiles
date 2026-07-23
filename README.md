@@ -8,7 +8,9 @@
 
 ## Codex の完了通知（macOS）
 
-Codex CLI の回答完了時に、macOS 通知と tmux 内メッセージを表示する。tmux 内で実行していれば、通知本文に `session:window.pane` 形式のペイン識別子も付く。
+Codex CLI の回答完了時に、iTerm2 経由の macOS 通知と tmux 内メッセージを表示する。tmux 内で実行していれば、通知本文に `session:window.pane` 形式のペイン識別子も付く。通知をクリックすると iTerm2 が前面に表示される。
+
+macOS の「システム設定 > 通知 > iTerm2」で通知を許可しておく。
 
 `~/.codex/config.toml` のユーザーレベル設定に次を追加する。
 

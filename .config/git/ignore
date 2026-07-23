@@ -22,3 +22,4 @@ url
 .emacs.d/bookmarks
 .emacs.d/.org-id-locations
 .emacs.d/inits/100_safe_directories.el
+.ai.code.files/

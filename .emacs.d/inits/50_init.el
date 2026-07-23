@@ -30,6 +30,11 @@
                       :family "JetBrains Mono"
                       :height 180))
 
+;; Emacsの標準的な80桁×25行を基準に、横2倍・縦1.5倍で開く。
+(setq initial-frame-alist
+      '((width . 160)
+        (height . 38)))
+
 ;; ediffの定設
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)

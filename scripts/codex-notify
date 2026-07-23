@@ -3,6 +3,7 @@
 # Codex passes one JSON payload as the final argument to the notify command.
 payload=${1:-"{}"}
 tmux_label=""
+notification_tty=""
 
 # Keep the Codex desktop app's existing turn-ended integration working.
 desktop_notifier="$HOME/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
@@ -13,6 +14,9 @@ fi
 # Show an in-tmux message as well, so completion is visible on returning to tmux.
 if [ -n "${TMUX:-}" ] && command -v tmux >/dev/null 2>&1; then
     tmux_label=$(tmux display-message -p '#S:#I.#P' 2>/dev/null || true)
+    if [ -n "${TMUX_PANE:-}" ]; then
+        notification_tty=$(tmux display-message -p -t "$TMUX_PANE" '#{client_tty}' 2>/dev/null || true)
+    fi
     if [ -n "$tmux_label" ]; then
         tmux display-message "Codex: 回答が完了しました (${tmux_label})" >/dev/null 2>&1 || true
     else
@@ -20,30 +24,27 @@ if [ -n "${TMUX:-}" ] && command -v tmux >/dev/null 2>&1; then
     fi
 fi
 
-# Use argv rather than interpolating text into AppleScript, avoiding quoting issues.
-/usr/bin/osascript - "$payload" "$tmux_label" <<'APPLESCRIPT' >/dev/null 2>&1
-on run argv
-    set payload to item 1 of argv
-    set tmuxLabel to item 2 of argv
-    set notificationBody to "回答が完了しました"
+# Ask iTerm2 to post the macOS notification. Unlike an osascript notification,
+# clicking it activates iTerm2 instead of Script Editor.
+notification_body="回答が完了しました"
+cwd=$(/usr/bin/printf '%s' "$payload" | /usr/bin/plutil -extract cwd raw -o - - 2>/dev/null || true)
+if [ -n "$cwd" ]; then
+    notification_body="完了: $cwd"
+fi
+if [ -n "$tmux_label" ]; then
+    notification_body="$notification_body [$tmux_label]"
+fi
 
-    try
-        set cwdMarker to "\"cwd\":\""
-        set markerOffset to offset of cwdMarker in payload
-        if markerOffset > 0 then
-            set cwdStart to markerOffset + (length of cwdMarker)
-            set cwdTail to text cwdStart thru -1 of payload
-            set cwdEnd to (offset of "\"" in cwdTail) - 1
-            if cwdEnd > 0 then
-                set notificationBody to "完了: " & text 1 thru cwdEnd of cwdTail
-            end if
-        end if
-    end try
+# Do not allow control characters from the payload to alter the OSC sequence.
+notification_body=$(/usr/bin/printf '%s' "$notification_body" | LC_ALL=C /usr/bin/tr -d '\000-\010\013\014\016-\037\177')
 
-    if tmuxLabel is not "" then
-        set notificationBody to notificationBody & " [" & tmuxLabel & "]"
-    end if
-
-    display notification notificationBody with title "Codex"
-end run
-APPLESCRIPT
+if [ -z "$notification_tty" ] && [ -w /dev/tty ]; then
+    notification_tty=/dev/tty
+fi
+case "$notification_tty" in
+    /dev/tty*)
+        if [ -w "$notification_tty" ]; then
+            /usr/bin/printf '\033]9;%s\007' "$notification_body" >"$notification_tty" 2>/dev/null || true
+        fi
+        ;;
+esac

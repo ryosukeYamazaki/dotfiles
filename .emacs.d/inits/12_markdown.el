@@ -6,6 +6,7 @@
 
 (use-package markdown-mode
   :init
+  (setq markdown-command "pandoc -f gfm")
   :mode (("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode))
   :bind
